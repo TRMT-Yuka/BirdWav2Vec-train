@@ -9,3 +9,10 @@ in https://github.com/huggingface/transformers
 - `plot_result.py`: plots embeding space from `result.pkl`
 - `model_push_to_hub.py`: pushes model to huggingface
  
+## Training (pretraining)
+
+```
+sh run_birddb.sh
+```
+This script performs speech-pretraining for bird songs 
+using `run_wav2vec2_pretraining_no_trainer.py`.
