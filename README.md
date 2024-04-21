@@ -16,3 +16,11 @@ sh run_birddb.sh
 ```
 This script performs speech-pretraining for bird songs 
 using `run_wav2vec2_pretraining_no_trainer.py`.
+
+
+【追記】
+
+
+```
+sh run_birddb.sh
+```
