@@ -18,9 +18,12 @@ This script performs speech-pretraining for bird songs
 using `run_wav2vec2_pretraining_no_trainer.py`.
 
 
-【追記】
+## 【追記】
 
+run_birddb.shにおいて,dataset_nameとして指定されるデータセットが非公開の場合に対応
+
+.envファイルを作成し, 
 
 ```
-sh run_birddb.sh
+huggingface_TOKEN=hf_TcViexample.....(hugging faceのアクセストークンを記入)
 ```
