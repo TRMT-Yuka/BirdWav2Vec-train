@@ -25,6 +25,7 @@ from typing import Dict, List, Optional, Union
 import datasets
 import torch
 from datasets import DatasetDict, concatenate_datasets, load_dataset
+# from datasets import load_from_disk # added by trmt on 24/04/18
 from torch.utils.data.dataloader import DataLoader
 from tqdm.auto import tqdm
 
@@ -45,7 +46,16 @@ from transformers import (
 from transformers.models.wav2vec2.modeling_wav2vec2 import _compute_mask_indices, _sample_negative_indices
 from transformers.utils import get_full_repo_name, send_example_telemetry
 
+#--------added by trmt on 24/04/18
+from dotenv import load_dotenv
+from huggingface_hub import login
 
+load_dotenv()
+huggingface_token = os.getenv('huggingface_TOKEN')
+login(token=huggingface_token)
+
+# device = torch.device("cuda:0")
+# --------------------------------
 logger = get_logger(__name__)
 
 
@@ -414,7 +424,9 @@ def main():
             dataset_config_name,
             split=train_split_name,
             cache_dir=args.cache_dir,
+            verification_mode="no_checks"# added by trmt on 24/04/18
         )
+
         def prepare_dataset(batch):
             audio = batch["audio"]
             if len(audio["array"])>=44100*0.1:
