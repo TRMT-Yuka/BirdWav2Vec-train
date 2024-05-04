@@ -1,3 +1,4 @@
 /data/
 /model/
 .env
+/wav2vec2-birddb/

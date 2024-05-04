@@ -417,6 +417,9 @@ def main():
     # We load all dataset configuration and datset split pairs passed in
     # ``args.dataset_config_names`` and ``args.dataset_split_names``
     datasets_splits = []
+    
+    feature_extractor = Wav2Vec2FeatureExtractor.from_pretrained(args.model_name_or_path)
+
     for dataset_config_name, train_split_name in zip(args.dataset_config_names, args.dataset_split_names):
         # load dataset
         dataset_split = load_dataset(
@@ -429,10 +432,19 @@ def main():
 
         def prepare_dataset(batch):
             audio = batch["audio"]
+            # =============== added by trmt on 2024/04/22 ==========
+            # print("==================")
+            # print("audio.keys()====>",audio.keys())
+            # print("audio====>",audio)
+            # ======================================================
             if len(audio["array"])>=44100*0.1:
                 return True
             else:
                 return False
+
+        dataset_split = dataset_split.cast_column(
+            args.audio_column_name, datasets.features.Audio(sampling_rate=feature_extractor.sampling_rate)
+        )
         dataset_split = dataset_split.filter(prepare_dataset)
         datasets_splits.append(dataset_split)
 
@@ -460,7 +472,7 @@ def main():
     # Thankfully, `datasets` takes care of automatically loading and resampling the audio,
     # so that we just need to set the correct target sampling rate and normalize the input
     # via the `feature_extractor`
-    feature_extractor = Wav2Vec2FeatureExtractor.from_pretrained(args.model_name_or_path)
+    # feature_extractor = Wav2Vec2FeatureExtractor.from_pretrained(args.model_name_or_path)
 
     # make sure that dataset decodes audio with correct sampling rate
     raw_datasets = raw_datasets.cast_column(

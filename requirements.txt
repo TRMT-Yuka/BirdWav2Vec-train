@@ -5,3 +5,4 @@ accelerate >= 0.12.0
 librosa
 transformers
 python-dotenv
+wandb
