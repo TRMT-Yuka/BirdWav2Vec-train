@@ -1,7 +1,7 @@
 /data/
 /model/
+/.ipynb_checkpoints/
 /logs/
 /past_logs/
 /wav2vec2-birddb/
-/.ipynb_checkpoints/
 .env
