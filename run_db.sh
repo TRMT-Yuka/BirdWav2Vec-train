@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the range of batch sizes you want to test
-batch_sizes=(2 4 8)
+batch_sizes=(1 2 4 8)
 
 # Loop over each batch size
 for batch_size in "${batch_sizes[@]}"

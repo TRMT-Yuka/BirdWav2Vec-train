@@ -25,7 +25,6 @@ from typing import Dict, List, Optional, Union
 import datasets
 import torch
 from datasets import DatasetDict, concatenate_datasets, load_dataset
-# from datasets import load_from_disk # added by trmt on 24/04/18
 from torch.utils.data.dataloader import DataLoader
 from tqdm.auto import tqdm
 
